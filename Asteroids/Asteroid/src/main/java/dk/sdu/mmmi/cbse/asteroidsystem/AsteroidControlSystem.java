@@ -1,6 +1,7 @@
 package dk.sdu.mmmi.cbse.asteroidsystem;
 
 import dk.sdu.mmmi.cbse.common.asteroid.Asteroid;
+import dk.sdu.mmmi.cbse.common.asteroid.IAsteroidSplitter;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
@@ -13,6 +14,7 @@ import java.util.Random;
 
 public class AsteroidControlSystem implements IEntityProcessingService {
     private final Random random = new Random();
+    private IAsteroidSplitter asteroidSplitter;
 
     @Override
     public void process(GameData gameData, World world) {
@@ -26,7 +28,16 @@ public class AsteroidControlSystem implements IEntityProcessingService {
             movingPart.setUp(random.nextBoolean());
             movingPart.process(gameData, asteroid);
             positionPart.process(gameData, asteroid);
+
+            asteroidSplitter.splitAsteroid(asteroid, world);
         }
     }
 
+    public void setAsteroidSplitter(IAsteroidSplitter asteroidSplitter) {
+        this.asteroidSplitter = asteroidSplitter;
+    }
+
+    public void removeAsteroidSplitter(IAsteroidSplitter asteroidSplitter) {
+        this.asteroidSplitter = null;
+    }
 }

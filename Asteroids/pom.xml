@@ -64,6 +64,7 @@
         <module>CommonBullet</module>
         <module>CommonAsteroid</module>
         <module>Asteroid</module>
+        <module>AsteroidSplitter</module>
         <module>Bullet</module>
         <module>LibGDX</module>
     </modules>
