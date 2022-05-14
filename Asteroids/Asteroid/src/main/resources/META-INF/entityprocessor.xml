@@ -7,6 +7,6 @@
         <provide interface="dk.sdu.mmmi.cbse.common.services.IEntityProcessingService"/>
     </service>
     <reference bind="setAsteroidSplitter" cardinality="1..1"
-               interface="dk.sdu.mmmi.cbse.common.asteroids.IAsteroidSplitter"
+               interface="dk.sdu.mmmi.cbse.common.asteroid.IAsteroidSplitter"
                name="IAsteroidSplitter" policy="dynamic" unbind="removeAsteroidSplitter"/>
 </scr:component>

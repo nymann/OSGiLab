@@ -6,18 +6,16 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.LifePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
-import org.openide.util.lookup.ServiceProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@ServiceProvider(service = IPostEntityProcessingService.class)
 public class CollisionDetection implements IPostEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {
         List<Entity> entities = new ArrayList<>(world.getEntities());
-        for (Entity a: entities) {
-            for (Entity b: entities) {
+        for (Entity a : entities) {
+            for (Entity b : entities) {
                 if (a.equals(b)) {
                     continue;
                 }
