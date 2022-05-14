@@ -1,7 +1,9 @@
-package dk.sdu.mmmi.cbse.main;
+package dk.sdu.mmmi.cbse.core;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import dk.sdu.mmmi.cbse.common.data.Entity;
@@ -11,18 +13,30 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.shape.IShapeRender;
-import dk.sdu.mmmi.cbse.managers.GameInputProcessor;
-import org.openide.util.Lookup;
+import dk.sdu.mmmi.cbse.core.managers.GameInputProcessor;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements ApplicationListener {
 
+    private static final List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
+    private static final List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
+    private static final List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
     private final GameData gameData = new GameData();
     private final World world = new World();
-    private final Lookup lookup = Lookup.getDefault();
-    private Collection<? extends IEntityProcessingService> entityProcessingServices;
     private IShapeRender sr;
+
+    public Game() {
+        LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
+        cfg.title = "Asteroids";
+        cfg.width = 800;
+        cfg.height = 600;
+        cfg.useGL30 = false;
+        cfg.resizable = false;
+
+        new LwjglApplication(this, cfg);
+    }
 
     @Override
     public void create() {
@@ -37,11 +51,6 @@ public class Game implements ApplicationListener {
         sr = new MyShapeRender();
 
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
-
-        for (IGamePluginService iGamePlugin : getPluginServices()) {
-            iGamePlugin.start(gameData, world);
-        }
-        entityProcessingServices = getEntityProcessingServices();
     }
 
     @Override
@@ -59,10 +68,10 @@ public class Game implements ApplicationListener {
     }
 
     private void update() {
-        for (IEntityProcessingService entityProcessorService : entityProcessingServices) {
+        for (IEntityProcessingService entityProcessorService : entityProcessorList) {
             entityProcessorService.process(gameData, world);
         }
-        for (IPostEntityProcessingService postEntityProcessorService : getPostEntityProcessingServices()) {
+        for (IPostEntityProcessingService postEntityProcessorService : postEntityProcessorList) {
             postEntityProcessorService.process(gameData, world);
         }
     }
@@ -89,15 +98,30 @@ public class Game implements ApplicationListener {
     public void dispose() {
     }
 
-    private Collection<? extends IGamePluginService> getPluginServices() {
-        return lookup.lookupAll(IGamePluginService.class);
+    public void addEntityProcessingService(IEntityProcessingService eps) {
+        entityProcessorList.add(eps);
     }
 
-    private Collection<? extends IEntityProcessingService> getEntityProcessingServices() {
-        return lookup.lookupAll(IEntityProcessingService.class);
+    public void removeEntityProcessingService(IEntityProcessingService eps) {
+        entityProcessorList.remove(eps);
     }
 
-    private Collection<? extends IPostEntityProcessingService> getPostEntityProcessingServices() {
-        return lookup.lookupAll(IPostEntityProcessingService.class);
+    public void addPostEntityProcessingService(IPostEntityProcessingService eps) {
+        postEntityProcessorList.add(eps);
     }
+
+    public void removePostEntityProcessingService(IPostEntityProcessingService eps) {
+        postEntityProcessorList.remove(eps);
+    }
+
+    public void addGamePluginService(IGamePluginService plugin) {
+        gamePluginList.add(plugin);
+        plugin.start(gameData, world);
+    }
+
+    public void removeGamePluginService(IGamePluginService plugin) {
+        gamePluginList.remove(plugin);
+        plugin.stop(gameData, world);
+    }
+
 }

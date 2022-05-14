@@ -50,6 +50,8 @@
     <module>Common</module>
     <module>CommonBullet</module>
     <module>Bullet</module>
+    <module>Core</module>
+    <module>LibGDX</module>
   </modules>
 
   <build>
