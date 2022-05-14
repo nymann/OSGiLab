@@ -1,6 +1,6 @@
 package dk.sdu.mmmi.cbse.asteroidsplittingsystem;
 
-import dk.sdu.mmmi.cbse.asteroidsystem.Asteroid;
+import dk.sdu.mmmi.cbse.common.asteroid.Asteroid;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
@@ -8,12 +8,10 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.LifePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
-import org.openide.util.lookup.ServiceProvider;
 
 import java.util.Collection;
 
 
-@ServiceProvider(service = IPostEntityProcessingService.class)
 public class AsteroidSplitter implements IPostEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {

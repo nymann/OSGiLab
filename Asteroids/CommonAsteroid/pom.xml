@@ -12,33 +12,14 @@
         <bundle.namespace>dk.sdu.mmmi</bundle.namespace>
     </properties>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>Bullet</artifactId>
-    <name>Bullet</name>
+    <artifactId>CommonAsteroid</artifactId>
+    <name>CommonAsteroid</name>
     <packaging>bundle</packaging>
     <dependencies>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Common</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>CommonBullet</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-            </plugin>
-        </plugins>
-    </build>
 </project>
