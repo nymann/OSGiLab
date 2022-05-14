@@ -63,6 +63,7 @@
         <module>Common</module>
         <module>CommonBullet</module>
         <module>CommonAsteroid</module>
+        <module>Asteroid</module>
         <module>Bullet</module>
         <module>LibGDX</module>
     </modules>
