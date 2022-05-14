@@ -9,13 +9,8 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.ExpirationPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import org.openide.util.lookup.ServiceProvider;
-import org.openide.util.lookup.ServiceProviders;
 
-@ServiceProviders(value = {
-        @ServiceProvider(service = IEntityProcessingService.class),
-        @ServiceProvider(service = IBulletBehaviour.class)
-})
+
 public class BulletControlSystem implements IEntityProcessingService, IBulletBehaviour {
 
     public Entity bulletCreator(Entity origin) {
