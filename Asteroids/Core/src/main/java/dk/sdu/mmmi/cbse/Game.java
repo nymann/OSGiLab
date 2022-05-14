@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.cbse.core;
+package dk.sdu.mmmi.cbse;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -13,6 +13,7 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.shape.IShapeRender;
+import dk.sdu.mmmi.cbse.core.MyShapeRender;
 import dk.sdu.mmmi.cbse.core.managers.GameInputProcessor;
 
 import java.util.List;
@@ -28,6 +29,10 @@ public class Game implements ApplicationListener {
     private IShapeRender sr;
 
     public Game() {
+        init();
+    }
+
+    public void init() {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Asteroids";
         cfg.width = 800;
