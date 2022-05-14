@@ -67,6 +67,7 @@
         <module>AsteroidSplitter</module>
         <module>Bullet</module>
         <module>LibGDX</module>
+        <module>Player</module>
     </modules>
 
     <build>

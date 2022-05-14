@@ -1,38 +1,17 @@
 package dk.sdu.mmmi.cbse.playersystem;
 
-import dk.sdu.mmmi.cbse.common.bullet.IBulletBehaviour;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
-import dk.sdu.mmmi.cbse.common.data.GameKeys;
 import dk.sdu.mmmi.cbse.common.data.World;
-import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import org.openide.util.Lookup;
-import org.openide.util.lookup.ServiceProvider;
 
-@ServiceProvider(service = IEntityProcessingService.class)
 public class PlayerControlSystem implements IEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
         for (Entity entity : world.getEntities(Player.class)) {
             Player player = (Player) entity;
-            PositionPart positionPart = player.getPart(PositionPart.class);
-            MovingPart movingPart = player.getPart(MovingPart.class);
-            if (player.canShoot(gameData.getDelta()) && gameData.getKeys().isDown(GameKeys.SPACE)) {
-                Entity bullet = Lookup.getDefault().lookup(IBulletBehaviour.class).bulletCreator(player);
-                player.resetCooldown();
-                world.addEntity(bullet);
-            }
-
-            movingPart.setLeft(gameData.getKeys().isDown(GameKeys.LEFT));
-            movingPart.setRight(gameData.getKeys().isDown(GameKeys.RIGHT));
-            movingPart.setUp(gameData.getKeys().isDown(GameKeys.UP));
-
-            movingPart.process(gameData, player);
-            positionPart.process(gameData, player);
-
             updateShape(player);
         }
     }
