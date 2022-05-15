@@ -68,6 +68,7 @@
         <module>Bullet</module>
         <module>LibGDX</module>
         <module>Player</module>
+        <module>Enemy</module>
     </modules>
 
     <build>
