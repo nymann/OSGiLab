@@ -7,7 +7,7 @@ public class Player extends Entity {
     private float cooldown = 0;
 
     public Player() {
-        this.hexColor = "#8FEB34";
+        this.hexColor = "8FEB34";
     }
 
     public boolean canShoot(float gameTime) {

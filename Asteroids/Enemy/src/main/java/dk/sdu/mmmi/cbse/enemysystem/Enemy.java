@@ -6,7 +6,7 @@ import dk.sdu.mmmi.cbse.common.data.EntityType;
 public class Enemy extends Entity {
 
     public Enemy() {
-        this.hexColor = "#eb4034";
+        this.hexColor = "EB4034";
     }
     private float cooldown = 0;
 

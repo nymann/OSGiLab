@@ -9,7 +9,7 @@ import dk.sdu.mmmi.cbse.common.shape.ShapeType;
 public class Asteroid extends Entity {
     public Asteroid() {
         super(10, 30);
-        hexColor = "#756153";
+        hexColor = "756153";
         shapeType = ShapeType.FILLED;
     }
 

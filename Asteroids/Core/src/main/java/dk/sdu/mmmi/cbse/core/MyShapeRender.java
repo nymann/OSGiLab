@@ -15,13 +15,7 @@ public class MyShapeRender implements IShapeRender {
 
     @Override
     public void setColor(String hex) {
-        Color color;
-        try {
-            color = Color.valueOf(hex);
-        } catch (NumberFormatException e) {
-            color = Color.WHITE;
-        }
-        this.shapeRenderer.setColor(color);
+        this.shapeRenderer.setColor(Color.valueOf(hex));
     }
 
     private ShapeRenderer.ShapeType convertShapeType(ShapeType shapeType) {

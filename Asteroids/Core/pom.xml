@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <relativePath>../poms/compiled/pom.xml</relativePath>
-        <groupId>dk.sdu.mmmi.cbse.Asteroids.build</groupId>
+        <relativePath>../poms/compiled/</relativePath>
+        <groupId>dk.sdu.mmmi.build</groupId>
         <artifactId>compiled-bundle-settings</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -11,9 +10,8 @@
     <properties>
         <bundle.symbolicName>dk.sdu.mmmi.core</bundle.symbolicName>
         <bundle.namespace>dk.sdu.mmmi</bundle.namespace>
-        <libGDX.version>1.9.10</libGDX.version>
     </properties>
-
+  
     <modelVersion>4.0.0</modelVersion>
     <artifactId>Core</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -24,24 +22,21 @@
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
-            <version>6.0.0</version>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.compendium</artifactId>
-            <version>5.0.0</version>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>dk.sdu.mmmi.build</groupId>
+            <artifactId>Common</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>LibGDX</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>dk.sdu.mmmi.cbse.Asteroids.build</groupId>
-            <artifactId>Common</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

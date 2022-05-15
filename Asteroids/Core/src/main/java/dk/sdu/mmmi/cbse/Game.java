@@ -21,18 +21,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements ApplicationListener {
 
-    private static final List<IEntityProcessingService> entityProcessorList = new CopyOnWriteArrayList<>();
-    private static final List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
-    private static final List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
-    private final GameData gameData = new GameData();
-    private final World world = new World();
+    private final GameData gameData;
+    private final List<IEntityProcessingService> entityProcessorList;
+    private final List<IGamePluginService> gamePluginList = new CopyOnWriteArrayList<>();
+    private final List<IPostEntityProcessingService> postEntityProcessorList = new CopyOnWriteArrayList<>();
+    private final World world;
     private IShapeRender sr;
 
     public Game() {
-        init();
-    }
+        entityProcessorList = new CopyOnWriteArrayList<>();
+        world = new World();
 
-    public void init() {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Asteroids";
         cfg.width = 800;
@@ -40,15 +39,15 @@ public class Game implements ApplicationListener {
         cfg.useGL30 = false;
         cfg.resizable = false;
 
+        gameData = new GameData();
+        gameData.setDisplayWidth(cfg.width);
+        gameData.setDisplayHeight(cfg.height);
+
         new LwjglApplication(this, cfg);
     }
 
     @Override
     public void create() {
-
-        gameData.setDisplayWidth(Gdx.graphics.getWidth());
-        gameData.setDisplayHeight(Gdx.graphics.getHeight());
-
         OrthographicCamera cam = new OrthographicCamera(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         cam.translate(gameData.getDisplayWidth() / 2f, gameData.getDisplayHeight() / 2f);
         cam.update();
