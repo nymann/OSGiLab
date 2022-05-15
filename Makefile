@@ -11,4 +11,4 @@ ${BIN}: ${JAVA_FILES} ${POM_FILES}
 install: ${BIN}
 
 run: ${BIN}
-	mvn install pax:provision -f ${COMPONENT}/pom.xml
+	mvn pax:provision -f ${COMPONENT}/pom.xml

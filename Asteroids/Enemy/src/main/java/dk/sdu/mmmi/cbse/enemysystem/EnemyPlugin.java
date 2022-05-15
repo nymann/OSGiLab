@@ -44,5 +44,4 @@ public class EnemyPlugin implements IGamePluginService {
     public void stop(GameData gameData, World world) {
         world.removeEntity(enemy);
     }
-
 }
