@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.cbse.lifeprocessingsystem;
+package dk.sdu.mmmi.cbse.lifeprocessing;
 
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
