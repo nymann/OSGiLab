@@ -17,23 +17,38 @@ public class PlayerControlSystem implements IEntityProcessingService {
     public void process(GameData gameData, World world) {
         for (Entity entity : world.getEntities(Player.class)) {
             Player player = (Player) entity;
-            PositionPart positionPart = player.getPart(PositionPart.class);
-            MovingPart movingPart = player.getPart(MovingPart.class);
-            if (player.canShoot(gameData.getDelta()) && gameData.getKeys().isDown(GameKeys.SPACE)) {
-                Entity bullet = bulletService.bulletCreator(player);
+
+            if (canShoot(player, gameData)) {
+                world.addEntity(bulletService.bulletCreator(player));
                 player.resetCooldown();
-                world.addEntity(bullet);
             }
 
+            MovingPart movingPart = player.getPart(MovingPart.class);
             movingPart.setLeft(gameData.getKeys().isDown(GameKeys.LEFT));
             movingPart.setRight(gameData.getKeys().isDown(GameKeys.RIGHT));
             movingPart.setUp(gameData.getKeys().isDown(GameKeys.UP));
-
             movingPart.process(gameData, player);
+
+            PositionPart positionPart = player.getPart(PositionPart.class);
             positionPart.process(gameData, player);
 
             updateShape(player);
         }
+    }
+
+    private boolean canShoot(Player player, GameData gameData) {
+        if (this.bulletService == null) {
+            return false;
+        }
+        if (!player.canShoot(gameData.getDelta())) {
+            return false;
+        }
+
+        if (!gameData.getKeys().isDown(GameKeys.SPACE)) {
+            return false;
+        }
+
+        return true;
     }
 
     private void updateShape(Entity entity) {

@@ -13,7 +13,7 @@
     </properties>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>LifeProcessor</artifactId>
-    <name>dk.sdu.mmmi.cbse.lifeprocessing.LifeProcessor</name>
+    <name>LifeProcessor</name>
     <packaging>bundle</packaging>
     <dependencies>
         <dependency>
