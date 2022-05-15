@@ -4,7 +4,7 @@ import dk.sdu.mmmi.cbse.common.asteroid.IAsteroidSplitter;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-public class Activator implements BundleActivator {
+public class AsteroidSplitterActivator implements BundleActivator {
 
     @Override
     public void start(BundleContext context) {

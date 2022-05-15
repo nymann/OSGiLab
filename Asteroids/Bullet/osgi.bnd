@@ -1,1 +1,3 @@
 Bundle-SymbolicName: Bullet
+Bundle-ActivationPolicy: lazy
+Service-Component: META-INF/processor.xml, META-INF/bullet_behaviour.xml
