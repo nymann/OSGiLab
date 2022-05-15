@@ -18,7 +18,6 @@ public class AsteroidProcessor implements IEntityProcessingService {
 
     @Override
     public void process(GameData gameData, World world) {
-        System.out.println("Lol processing asteroid, this will never happen");
         for (Entity asteroid : world.getEntities(Asteroid.class)) {
             PositionPart positionPart = asteroid.getPart(PositionPart.class);
             MovingPart movingPart = asteroid.getPart(MovingPart.class);
@@ -30,7 +29,9 @@ public class AsteroidProcessor implements IEntityProcessingService {
             movingPart.process(gameData, asteroid);
             positionPart.process(gameData, asteroid);
 
-            asteroidSplitter.splitAsteroid(asteroid, world);
+            if (this.asteroidSplitter != null) {
+                asteroidSplitter.splitAsteroid(asteroid, world);
+            }
         }
     }
 
