@@ -60,6 +60,7 @@
         <module>Bullet</module>
         <module>Player</module>
         <module>Enemy</module>
+        <module>CollisionDetection</module>
         <module>LifeProcessor</module>
     </modules>
       

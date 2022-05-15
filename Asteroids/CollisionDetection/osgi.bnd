@@ -1,0 +1,3 @@
+Bundle-SymbolicName: CollisionDetection
+Bundle-ActivationPolicy: lazy
+Service-Component: META-INF/processor.xml
