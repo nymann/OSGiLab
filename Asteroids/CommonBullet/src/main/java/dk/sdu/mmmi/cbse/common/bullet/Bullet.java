@@ -6,7 +6,7 @@ import dk.sdu.mmmi.cbse.common.data.EntityType;
 public class Bullet extends Entity {
 
     public Bullet() {
-        hexColor = "#b4ded5";
+        hexColor = "B4DED5";
     }
 
     @Override

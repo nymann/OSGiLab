@@ -12,7 +12,7 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import java.util.Random;
 
 
-public class AsteroidControlSystem implements IEntityProcessingService {
+public class AsteroidProcessor implements IEntityProcessingService {
     private final Random random = new Random();
     private IAsteroidSplitter asteroidSplitter;
 

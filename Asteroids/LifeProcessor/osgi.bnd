@@ -1,0 +1,3 @@
+Bundle-SymbolicName: LifeProcessor
+Bundle-ActivationPolicy: lazy
+Service-Component: META-INF/processor.xml

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.mmmi.cbse.asteroid"
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:schemaLocation="http://www.osgi.org/xmlns/scr/v1.1.0 ">
-    <implementation class="dk.sdu.mmmi.cbse.asteroidsystem.AsteroidControlSystem"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.mmmi.cbse.asteroidsystem">
+    <implementation class="dk.sdu.mmmi.cbse.asteroidsystem.AsteroidProcessor"/>
     <service>
         <provide interface="dk.sdu.mmmi.cbse.common.services.IEntityProcessingService"/>
     </service>

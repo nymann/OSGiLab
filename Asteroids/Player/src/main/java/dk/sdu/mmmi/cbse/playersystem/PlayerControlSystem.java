@@ -1,5 +1,6 @@
 package dk.sdu.mmmi.cbse.playersystem;
 
+import dk.sdu.mmmi.cbse.common.bullet.IBulletBehaviour;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.GameKeys;
@@ -10,6 +11,8 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 
 public class PlayerControlSystem implements IEntityProcessingService {
 
+    private IBulletBehaviour bulletService;
+
     @Override
     public void process(GameData gameData, World world) {
         for (Entity entity : world.getEntities(Player.class)) {
@@ -17,9 +20,9 @@ public class PlayerControlSystem implements IEntityProcessingService {
             PositionPart positionPart = player.getPart(PositionPart.class);
             MovingPart movingPart = player.getPart(MovingPart.class);
             if (player.canShoot(gameData.getDelta()) && gameData.getKeys().isDown(GameKeys.SPACE)) {
-                // Entity bullet = Lookup.getDefault().lookup(IBulletBehaviour.class).bulletCreator(player);
+                Entity bullet = bulletService.bulletCreator(player);
                 player.resetCooldown();
-                // world.addEntity(bullet);
+                world.addEntity(bullet);
             }
 
             movingPart.setLeft(gameData.getKeys().isDown(GameKeys.LEFT));
@@ -55,6 +58,14 @@ public class PlayerControlSystem implements IEntityProcessingService {
 
         entity.setShapeX(shapex);
         entity.setShapeY(shapey);
+    }
+
+    public void setBulletService(IBulletBehaviour bulletService) {
+        this.bulletService = bulletService;
+    }
+
+    public void removeBulletService(IBulletBehaviour bulletService) {
+        this.bulletService = null;
     }
 
 }
