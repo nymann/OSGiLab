@@ -44,4 +44,5 @@ public class AsteroidSplitter implements IAsteroidSplitter {
         world.addEntity(createPostSplitAsteroid(entity, newRadius, offset));
         world.addEntity(createPostSplitAsteroid(entity, newRadius, -offset));
     }
+
 }

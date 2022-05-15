@@ -26,24 +26,34 @@ public class EnemyControlSystem implements IEntityProcessingService {
         List<Entity> enemies = world.getEntities(Enemy.class);
         for (Entity entity : enemies) {
             Enemy enemy = (Enemy) entity;
-            PositionPart positionPart = enemy.getPart(PositionPart.class);
+
             MovingPart movingPart = enemy.getPart(MovingPart.class);
             boolean goingLeft = random.nextBoolean();
             movingPart.setLeft(goingLeft);
             movingPart.setRight(!goingLeft);
             movingPart.setUp(random.nextBoolean());
-
             movingPart.process(gameData, enemy);
+
+            PositionPart positionPart = enemy.getPart(PositionPart.class);
             positionPart.process(gameData, enemy);
 
-            if (enemy.canShoot(gameData.getDelta())) {
-                Entity bullet = bulletService.bulletCreator(enemy);
-                enemy.resetCooldown();
-                world.addEntity(bullet);
-            }
+            handleWeaponLogic(enemy, gameData, world);
+
 
             updateShape(enemy);
         }
+    }
+
+    private void handleWeaponLogic(Enemy enemy, GameData gameData, World world) {
+        if (this.bulletService == null) {
+            return;
+        }
+        if (!enemy.canShoot(gameData.getDelta())) {
+            return;
+        }
+
+        world.addEntity(bulletService.bulletCreator(enemy));
+        enemy.resetCooldown();
     }
 
     private void updateShape(Entity entity) {

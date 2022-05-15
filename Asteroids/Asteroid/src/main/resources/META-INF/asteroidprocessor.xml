@@ -4,4 +4,9 @@
     <service>
         <provide interface="dk.sdu.mmmi.cbse.common.services.IEntityProcessingService"/>
     </service>
+
+
+    <reference bind="setAsteroidSplitterService" cardinality="0..1"
+               interface="dk.sdu.mmmi.cbse.common.asteroid.IAsteroidSplitter"
+               name="AsteroidSplitterService" policy="dynamic" unbind="removeAsteroidSplitterService"/>
 </scr:component>

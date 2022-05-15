@@ -35,11 +35,11 @@ public class AsteroidProcessor implements IEntityProcessingService {
         }
     }
 
-    public void setAsteroidSplitter(IAsteroidSplitter asteroidSplitter) {
+    public void setAsteroidSplitterService(IAsteroidSplitter asteroidSplitter) {
         this.asteroidSplitter = asteroidSplitter;
     }
 
-    public void removeAsteroidSplitter(IAsteroidSplitter asteroidSplitter) {
+    public void removeAsteroidSplitterService(IAsteroidSplitter asteroidSplitter) {
         this.asteroidSplitter = null;
     }
 }

@@ -1,4 +1,2 @@
-Bundle-SymbolicName: AsteroidSplitter
-Bundle-ActivationPolicy: lazy
-Service-Component: META-INF/asteroidsplitter.xml
+Bundle-Activator: dk.sdu.mmmi.cbse.asteroidsplittingsystem.Activator
 
